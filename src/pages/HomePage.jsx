@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
 
+import DataRenderer from '@/components/DataRenderer';
 import ListingFilters from '@/components/ListingFilters';
 import ListingList from '@/components/ListingList';
 import { Separator, Spinner } from '@/components/ui';
@@ -24,21 +25,21 @@ const HomePage = () => {
     setFilters(filters);
   }, []);
 
-  const renderListingList = () => {
-    if (isLoading) {
-      return (
-        <div className='flex justify-center'>
-          <Spinner size='sm' />
-        </div>
-      );
-    }
+  // const renderListingList = () => {
+  //   if (isLoading) {
+  //     return (
+  //       <div className='flex justify-center'>
+  //         <Spinner size='sm' />
+  //       </div>
+  //     );
+  //   }
 
-    if (error) {
-      return <div className='text-center'>{error}</div>;
-    }
+  //   if (error) {
+  //     return <div className='text-center'>{error}</div>;
+  //   }
 
-    return <ListingList listings={listings} />;
-  };
+  //   return <ListingList listings={listings} />;
+  // };
 
   return (
     <div className='container py-4'>
@@ -46,7 +47,9 @@ const HomePage = () => {
         <ListingFilters onChange={handleFilters} />
         <Separator className='my-4' />
       </div>
-      {renderListingList()}
+      <DataRenderer error={error} isLoading={isLoading}>
+        <ListingList listings={listings} />
+      </DataRenderer>
     </div>
   );
 };
