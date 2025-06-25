@@ -9,36 +9,10 @@ import ListingList from '@/components/ListingList';
 import { Separator } from '@/components/ui';
 
 const HomePage = () => {
-  const [listings, setListings] = useState(staticListings);
+  const [listings, setListings] = useState([]);
 
   const handleFilters = (filters) => {
-    const { dates, guests, search } = filters;
-
-    // Resets filters by using static listings
-    let filteredListings = staticListings;
-
-    // Handles date range
-    if (dates) {
-      filteredListings = filteredListings.filter((listing) =>
-        isListingAvailable(listing, dates),
-      );
-    }
-
-    // Handles guests
-    if (guests) {
-      filteredListings = filteredListings.filter(
-        (listing) => guests <= listing.maxGuests,
-      );
-    }
-
-    // Handles search
-    if (search) {
-      filteredListings = filteredListings.filter((listing) =>
-        listing.name.toLowerCase().includes(search.toLowerCase()),
-      );
-    }
-
-    setListings(filteredListings);
+    
   };
 
   return (
