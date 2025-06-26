@@ -5,8 +5,6 @@ import { seedLocalDatabase } from '@/api/data/seed';
 import ThemeProvider from '@/components/ThemeProvider';
 import { store } from '@/state/store';
 
-
-
 import Router from './Router';
 
 import './index.css';
